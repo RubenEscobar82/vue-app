@@ -1,12 +1,17 @@
-FROM node.16.15.0
+FROM node:16.15.0
+
+RUN npm install -g http-server
 
 WORKDIR /image
 
-COPY package.json /image/package.json
-COPY package-lock.json /image/package.json
+COPY package.json ./
+COPY package-lock.json ./
 
 RUN npm install
 
-COPY . /image/
+COPY . .
 
-RUN npm run serve
+RUN npm run build
+
+EXPOSE 8080
+CMD ["http-server", "dist"]

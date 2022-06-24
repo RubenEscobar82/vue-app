@@ -28,7 +28,7 @@ steps:
     repositoryName: 'vue-app'
 
 - task: AWSCLI@1
-  displayName: 'Restast ECS service'
+  displayName: 'Restart ECS service'
   inputs:
     awsCredentials: 'AWS'
     regionName: 'us-east-1'

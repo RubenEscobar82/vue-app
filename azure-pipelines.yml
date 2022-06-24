@@ -39,11 +39,8 @@ stages:
             awsArguments: '--cluster dev-cluster --service deployment-service --force-new-deployment'
 - stage: PROD
   jobs:
-  - deployment: DeployWeb
+  - job: build
     pool:
-      vmImage: 'Ubuntu-latest'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo Hello world
+      vmImage: ubuntu-latest
+    steps:
+      - script: echo Hello world

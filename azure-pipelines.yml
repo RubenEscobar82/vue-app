@@ -17,12 +17,21 @@ steps:
     command: 'build'
     Dockerfile: 'Dockerfile'
     tags: 'latest'
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- task: ECRPushImage@1
+  displayName:  'Push Docker Image to ECR'
+  inputs:
+    awsCredentials: 'AWS'
+    regionName: 'us-east-1'
+    imageSource: 'imagename'
+    sourceImageName: 'vue-app'
+    repositoryName: 'vue-app'
+
+- task: AWSCLI@1
+  displayName: 'Restast ECS service'
+  inputs:
+    awsCredentials: 'AWS'
+    regionName: 'us-east-1'
+    awsCommand: 'ecs'
+    awsSubCommand: 'update-service'
+    awsArguments: '--cluster dev-cluster --service deployment-service --force-new-deployment'

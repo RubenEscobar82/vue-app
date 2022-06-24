@@ -12,7 +12,7 @@ stages:
   - job: build
     pool:
       vmImage: ubuntu-latest
-    displayName: 'Build and Deploy to PROD'
+    displayName: 'Build and Deploy to DEV'
     steps:
         - task: Docker@2
           displayName: 'Build Docker Image'

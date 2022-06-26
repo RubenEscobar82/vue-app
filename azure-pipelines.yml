@@ -14,7 +14,7 @@ stages:
       vmImage: ubuntu-latest
     displayName: 'Build and Deploy to DEV'
     variables:
-      group: env-webapp-dev
+    - group: env-webapp-dev
     steps:
     - script: echo deloying to DEV
     - task: CmdLine@2

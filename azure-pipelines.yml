@@ -18,9 +18,9 @@ stages:
     - task: DownloadSecureFile@1
       inputs:
         secureFile: '.env.webapp.dev'
-    - task: CmdLine@2
-      inputs:
-        script: 'mv .env.webapp.dev .env'
+    - #task: CmdLine@2
+      #inputs:
+        #script: 'mv .env.webapp.dev .env'
     - task: CmdLine@2
       inputs:
         script: 'ls'

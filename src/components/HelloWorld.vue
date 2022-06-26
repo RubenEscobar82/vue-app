@@ -6,6 +6,8 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
     <h3>Installed CLI Plugins</h3>
+    <br>
+    <h3>-----------------> Variable from env: {{variable || 'N/A'}}</h3>
     <ul>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
@@ -32,6 +34,11 @@
 <script>
 export default {
   name: 'HelloWorld',
+  data() {
+    return {
+      variable: process.env.VUE_APP_VARIABLE || 'N/A'
+    }
+  },
   props: {
     msg: String
   }

@@ -20,7 +20,7 @@ stages:
         secureFile: '.env.webapp.dev'
     - task: CmdLine@2
       inputs:
-        script: 'mv $(Agent.TempDirectory)/.env.webapp.dev $(Build.ArtifactStagingDirectory)/.env'
+        script: 'mv $(Agent.TempDirectory)/.env.webapp.dev $(Build.SourcesDirectory)/.env'
     - task: CmdLine@2
       inputs:
         script: 'ls -d $PWD/*'

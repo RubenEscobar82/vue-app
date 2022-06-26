@@ -21,32 +21,29 @@ stages:
     - task: CmdLine@2
       inputs:
         script: 'mv $(Agent.TempDirectory)/.env.webapp.dev $(Build.SourcesDirectory)/.env'
-    - task: CmdLine@2
+    - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
-        script: 'ls -d $PWD/*'
-#        - task: Docker@2
-#          displayName: 'Build Docker Image'
-#          inputs:
-#            repository: 'vue-app'
-#            command: 'build'
-#            Dockerfile: 'Dockerfile'
-#            tags: 'latest'
-#        - task: ECRPushImage@1
-#          displayName:  'Push Docker Image to ECR'
-#          inputs:
-#            awsCredentials: 'AWS'
-#            regionName: 'us-east-1'
-#            imageSource: 'imagename'
-#            sourceImageName: 'vue-app'
-#            repositoryName: 'vue-app'
-#         - task: AWSCLI@1
-#          displayName: 'Restart ECS service'
-#          inputs:
-#            awsCredentials: 'AWS'
-#            regionName: 'us-east-1'
-#            awsCommand: 'ecs'
-#            awsSubCommand: 'update-service'
-#            awsArguments: '--cluster dev-cluster --service deployment-service --force-new-deployment'
+        repository: 'vue-app'
+        command: 'build'
+        Dockerfile: 'Dockerfile'
+        tags: 'latest'
+    - task: ECRPushImage@1
+      displayName:  'Push Docker Image to ECR'
+      inputs:
+        awsCredentials: 'AWS'
+        regionName: 'us-east-1'
+        imageSource: 'imagename'
+        sourceImageName: 'vue-app'
+        repositoryName: 'vue-app'
+    - task: AWSCLI@1
+      displayName: 'Restart ECS service'
+      inputs:
+        awsCredentials: 'AWS'
+        regionName: 'us-east-1'
+        awsCommand: 'ecs'
+        awsSubCommand: 'update-service'
+        awsArguments: '--cluster dev-cluster --service deployment-service --force-new-deployment'
 - stage: PROD
   jobs:
   - deployment: deploy

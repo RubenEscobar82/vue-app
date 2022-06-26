@@ -23,7 +23,7 @@ stages:
         script: 'mv $(Agent.TempDirectory)/.env.webapp.dev $(Agent.BuildDirectory)/.env'
     - task: CmdLine@2
       inputs:
-        script: 'ls'
+        script: 'ls -d $PWD/*'
 #        - task: Docker@2
 #          displayName: 'Build Docker Image'
 #          inputs:

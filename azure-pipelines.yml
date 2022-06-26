@@ -17,12 +17,6 @@ stages:
       group: env-webapp-dev
     steps:
     - script: echo deloying to DEV
-#    - task: DownloadSecureFile@1
-#      inputs:
-#        secureFile: '.env.webapp.dev'
-#    - task: CmdLine@2
-#      inputs:
-#        script: 'mv $(Agent.TempDirectory)/.env.webapp.dev $(Build.SourcesDirectory)/.env'
     - task: CmdLine@2
       inputs:
         script: |

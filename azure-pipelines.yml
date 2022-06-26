@@ -15,6 +15,15 @@ stages:
     displayName: 'Build and Deploy to DEV'
     steps:
     - script: echo deloying to DEV
+    - task: DownloadSecureFile@1
+      inputs:
+        secureFile: '.env.webapp.dev'
+    - task: CmdLine@2
+      inputs:
+        script: 'mv .env.webapp.dev .env'
+    - task: CmdLine@2
+      inputs:
+        script: 'ls'
 #        - task: Docker@2
 #          displayName: 'Build Docker Image'
 #          inputs:

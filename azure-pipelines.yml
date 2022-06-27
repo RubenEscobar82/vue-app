@@ -6,6 +6,10 @@
 trigger:
 - master
 
+pool:
+  vmImage: ubuntu-latest
+  demands: Limit -equals DisAbleParallel
+
 stages:
 - stage: DEV
   jobs:
@@ -23,8 +27,6 @@ stages:
         instructions: 'Please validate the build configuration and resume'
         onTimeout: 'resume'
   - job: build
-    pool:
-      vmImage: ubuntu-latest
     displayName: 'Build and Deploy to DEV'
     variables:
     - group: env-webapp-dev
@@ -63,8 +65,6 @@ stages:
   jobs:
   - deployment: deploy
     displayName: Build and deploy to PROD
-    pool:
-      vmImage: 'Ubuntu-latest'
     # creates an environment if it doesn't exist
     environment: 'DEVELOPMENT'
     strategy:

@@ -13,6 +13,7 @@ stages:
 - stage: DEV
   jobs:
   - deployment: deploy
+    checkout: self
     displayName: 'Build and Deploy to DEV'
     environment: DEVELOPMENT
     variables:

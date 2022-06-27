@@ -16,7 +16,10 @@ stages:
     variables:
     - group: env-webapp-dev
     steps:
-    - script: echo deloying to DEV
+    - task: ManualIntervention@8
+      inputs:
+        instructions: 'Approval Pending'
+
     - task: CmdLine@2
       inputs:
         script: |

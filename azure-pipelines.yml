@@ -25,6 +25,7 @@ stages:
         Dockerfile: 'Dockerfile'
         tags: 'latest'
     - task: PowerShell@2
+      displayName: Cancel Pending Runs
       env:
         SYSTEM_ACCESSTOKEN: $(System.AccessToken)
       inputs:

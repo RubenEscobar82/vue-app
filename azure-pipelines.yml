@@ -13,6 +13,16 @@ pool:
 stages:
 - stage: DEV
   jobs:
+  - job: build
+    steps:
+    - task: Docker@2
+      inputs:
+        repository: 'vue-app'
+        command: 'build'
+        Dockerfile: 'Dockerfile'
+        tags: 'latest'
+- stage: PROD
+  jobs:
   - deployment: deploy
     displayName: 'Build and Deploy to DEV'
     environment: DEVELOPMENT

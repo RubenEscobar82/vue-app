@@ -8,6 +8,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+pr: none
 
 stages:
 - stage: DEV

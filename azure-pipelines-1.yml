@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 stages: 
-- stage: PROD-2do-Pipeline
+- stage: PROD_second_pipeline
   lockBehavior: runLatest
   jobs:
   - deployment: deploy

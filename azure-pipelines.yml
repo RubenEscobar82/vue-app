@@ -21,7 +21,7 @@ parameters:
 
 variables:
   cancelPriorDeployments: '${{ parameters.cancelPriorDeployments }}'
-  devOpsApiVersion: 6.0
+  devOpsApiVersion: 7.1
 
 stages:
 - stage: DEV

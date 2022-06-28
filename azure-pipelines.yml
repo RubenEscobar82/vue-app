@@ -4,10 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-  batch: true
-  branches:
-    include:
-      - master
+- master
 pr: none
 
 pool:
@@ -25,7 +22,6 @@ stages:
         Dockerfile: 'Dockerfile'
         tags: 'latest'
 - stage: PROD
-  lockBehavior: runLatest
   jobs:
   - deployment: deploy
     displayName: 'Build and Deploy to DEV'

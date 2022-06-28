@@ -9,7 +9,6 @@ trigger:
     include:
       - master
 pr: none
-lockBehavior: runLatest
 
 pool:
   vmImage: ubuntu-latest
@@ -26,6 +25,7 @@ stages:
         Dockerfile: 'Dockerfile'
         tags: 'latest'
 - stage: PROD
+  lockBehavior: runLatest
   jobs:
   - deployment: deploy
     displayName: 'Build and Deploy to DEV'

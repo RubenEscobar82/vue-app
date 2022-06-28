@@ -13,6 +13,16 @@ pr: none
 pool:
   vmImage: ubuntu-latest
 
+parameters:
+- name: cancelPriorDeployments
+  displayName: Cancel prior deployments
+  type: boolean
+  default: true
+
+variables:
+  cancelPriorDeployments: '${{ parameters.cancelPriorDeployments }}'
+  devOpsApiVersion: 6.0
+
 stages:
 - stage: DEV
   jobs:

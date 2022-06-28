@@ -15,6 +15,7 @@ RUN npm install pm2@latest -g
 
 USER node:node
 COPY --from=build --chown=node:node /app/dist dist
+COPY --from=build --chown=node:node /app/.env env
 
 WORKDIR /app/dist
 EXPOSE 8080

@@ -25,9 +25,6 @@ stages:
             echo DB_PASSWORD=\$\$VUE_APP_DB_PASSWORD\$\$
           ) > .env
           cat .env
-    - task: CmdLine@2
-      inputs:
-        script: 'ls -d $PWD/*'
     - task: replacetokens@5
       inputs:
         targetFiles: '.env'
@@ -43,4 +40,24 @@ stages:
         enableRecursion: false
         useLegacyPattern: false
         enableTelemetry: true
-    
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'AWS Private ECR'
+        repository: 'vue-app'
+        command: 'build'
+        Dockerfile: 'Dockerfile'
+        tags: 'latest'
+    - task: ECRPushImage@1
+      inputs:
+        awsCredentials: 'AWS'
+        regionName: 'us-east-1'
+        imageSource: 'imagename'
+        sourceImageName: 'vue-app'
+        repositoryName: 'vue-app'
+    - task: AWSCLI@1
+      inputs:
+        awsCredentials: 'AWS'
+        regionName: 'us-east-1'
+        awsCommand: 'ecs'
+        awsSubCommand: 'update-service'
+        awsArguments: '--cluster dev-cluster --service deployment-service --force-new-deployment'

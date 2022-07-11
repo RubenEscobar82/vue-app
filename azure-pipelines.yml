@@ -22,6 +22,6 @@ stages:
       inputs:
         script: |
           (
-            echo DB_PASSWORD=$(VUE_APP_DB_PASSWORD)
+            echo DB_PASSWORD=$$VUE_APP_DB_PASSWORD$$
           ) > .env
           cat .env

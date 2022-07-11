@@ -25,3 +25,18 @@ stages:
             echo DB_PASSWORD=$$VUE_APP_DB_PASSWORD$$
           ) > .env
           cat .env
+    - task: replacetokens@5
+      inputs:
+        targetFiles: '.env'
+        encoding: 'auto'
+        tokenPattern: 'custom'
+        tokenPrefix: '$$'
+        tokenSuffix: '$$'
+        writeBOM: true
+        actionOnMissing: 'warn'
+        keepToken: false
+        actionOnNoFiles: 'continue'
+        enableTransforms: false
+        enableRecursion: false
+        useLegacyPattern: false
+        enableTelemetry: true

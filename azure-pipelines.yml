@@ -14,22 +14,10 @@ stages:
 - stage: DEV
   jobs:
   - job: build
-    steps:
-    - task: Docker@2
-      inputs:
-        repository: 'vue-app'
-        command: 'build'
-        Dockerfile: 'Dockerfile'
-        tags: 'latest'
-- stage: PROD
-  jobs:
-  - deployment: deploy
-    displayName: 'Build and Deploy to DEV'
-    environment: DEVELOPMENT
     variables:
     - group: env-webapp-dev
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo deploted_to_DEV
+    steps:
+    - task: CmdLine@2
+      displayName: Create ENV File
+      inputs:
+        script: '(echo DB_PASSWORD=$(VUE_APP_DB_PASSWORD)) > .env cat .env'

@@ -20,4 +20,8 @@ stages:
     - task: CmdLine@2
       displayName: Create ENV File
       inputs:
-        script: '(echo DB_PASSWORD=$(VUE_APP_DB_PASSWORD)) > .env cat .env'
+        script: |
+          (
+            echo DB_PASSWORD=$(VUE_APP_DB_PASSWORD)
+          ) > .env
+          cat .env

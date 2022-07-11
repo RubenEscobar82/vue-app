@@ -22,7 +22,7 @@ stages:
       inputs:
         script: |
           (
-            echo DB_PASSWORD=\$\$VUE_APP_DB_PASSWORD\$\$
+            echo VUE_APP_DB_PASSWORD=\$\$VUE_APP_DB_PASSWORD\$\$
           ) > .env
           cat .env
     - task: replacetokens@5

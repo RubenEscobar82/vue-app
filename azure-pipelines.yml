@@ -28,5 +28,5 @@ stages:
     - task: replacetokens@5
       inputs:
         targetFiles: '.env'
-        tokenPrefix: '$$'
-        tokenSuffix: '$$'
+        tokenPrefix: '1730'
+        tokenSuffix: '1730'

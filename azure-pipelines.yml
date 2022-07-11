@@ -22,11 +22,11 @@ stages:
       inputs:
         script: |
           (
-            echo DB_PASSWORD=$$VUE_APP_DB_PASSWORD$$
+            echo DB_PASSWORD=\$\$VUE_APP_DB_PASSWORD\$\$
           ) > .env
           cat .env
     - task: replacetokens@5
       inputs:
         targetFiles: '.env'
-        tokenPrefix: '1730'
-        tokenSuffix: '1730'
+        tokenPrefix: '$$'
+        tokenSuffix: '$$'
